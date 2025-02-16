@@ -16,41 +16,32 @@
     <link rel="stylesheet" href="chatStyle.css">
 </head>
 <body>
-    <div class="home container-fluid vh-100 d-flex flex-column">
+    <div class="home container-fluid vh-100 d-flex flex-column" >
         <div class="row">
-            <div class="head d-flex justify-content-between">
+            <div class="head d-flex justify-content-between" >
                 <h3><i class="fa-regular fa-comments"></i> UsChatting</h3>
-                <button class="btn btn-danger" type="submit">Quiter le salon</button>
+                <a type="button" href="./index.html"><button class="btn btn-danger">Quiter le salon</button></a>
             </div>
 
-            <div class="sidebar col-lg-3 col-md-4 col-sm-5 col-12 p-3">
+            <div class="sidebar col-lg-3 col-md-4 col-sm-5 col-12 pe-3 ps-3">
                 <div class="nom-salon">
                     <h3 class="fs-3 mt-4"> <i class="fa-solid fa-comment"></i> Salon </h3>
-                    <h6>Chimie</h6>
                 </div>
                 <div class="users">
                     <h3 class="fs-3 mt-4"> <i class="fa-solid fa-users"></i> Utilisateur</h3>
-                    <ul class="list-unstyled lh-lg">
-                        <li>Ana</li>
-                        <li>Nta</li>
-                        <li>Huwa</li>
-                        <li>Xi whd</li>
+                    <ul class="list-unstyled lh-lg list-user">
                     </ul>
                 </div>
             </div>
 
             <div class="chat-space col-lg-9 col-md-8 col-sm-7 col-12" style="height: calc(100vh - 142px);">
-                <div class="chat mt-3 ms-5 p-1 " style="width: 70%;">
-                    <h4>Ana 11:33</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-                
             </div>
             <div class="mssg-bar p-3 text-center">
                 <input  type="text"
                         placeholder="Message ..."
                         required
-                        ><button class="pe-3"><i class="fa-solid fa-paper-plane"></i></button>
+                        id="message-input"
+                        ><button class="pe-3" id="send-button"><i class="fa-solid fa-paper-plane"></i></button>
                 
             </div>
             
@@ -61,7 +52,10 @@
 
 
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.13.1/qs.min.js" integrity="sha512-dOI8+lI91wsLJEMBQcZBvatYrawv84SrgkRF/6sIcjhYXgANOvOEkBtCSf/ZkdZ7Mw0u+VUxDgalDZA1qKWTFQ==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer">
+    </script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="./main.js"></script>
     <script src="/Boostarp/js/bootstrap.bundle.min.js"></script>

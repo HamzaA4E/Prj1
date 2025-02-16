@@ -5,57 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UsChatting</title>
     <link rel="stylesheet" href="/Boostarp/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/Boostarp/css/all.min.css " />
-    <link rel="stylesheet" href="/Bondi/index.css"/>
+    <link rel="stylesheet" href="/Boostarp/css/all.min.css" />
+    <link rel="stylesheet" href="/Bondi/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
 </head>
 <body class="vh-100 d-flex justify-content-center align-items-center">
-    <form action="chat.html">
-        <div class="home container d-flex justify-content-center align-items-center ">
-                <div class="row">
-                    <div class="head text-center"> 
-                        <h1><i class="fa-regular fa-comments"></i> UsChatting</h1>
+    <form action="chat.html" method="GET">
+        <div class="home container d-flex justify-content-center align-items-center">
+            <div class="row">
+                <div class="head text-center">
+                    <h1><i class="fa-regular fa-comments"></i> UsChatting</h1>
+                </div>
+
+                <div class="form container">
+                    <div class="user text-start mt-4">
+                        <label class="fs-4" for="username">Nom d'utilisateur</label><br>
+                        <input type="text"
+                               placeholder="Enter votre nom..."
+                               name="username"
+                               id="username"
+                               class="form-control"
+                               required>
                     </div>
-                   
-                    <div class="form container">
-                        <div class="user text-start mt-4">
-                            <label class="fs-4" for="username">Nom d'utilisateur</label><br>
-                            <input  type="text" 
-                                    placeholder="Enter votre nom..." 
-                                    name="username"
-                                    class="form-control"
-                                    required>
-    
-                        </div>
-                        <div class="room text-start mt-3">
-                            <label class="fs-4">Room</label><br>
-                            <select class="w-100">
-                                <option >Mathematique</option>
-                                <option>Informatique</option>
-                                <option>Physique</option>
-                                <option>Chimie</option>
-                            </select>
-                        </div>
-                    
-                            <div class="join-btn mt-3 mb-3 text-center">
-                               <button class="btn btn-outline-primary" type="submit">Join chat</button></a>
-                            </div>
+
+                    <div class="room text-start mt-3">
+                        <label class="fs-4" for="room">Room</label><br>
+                        <select name="room" id="room" class="w-100 form-control" required>
+                            <option value="Mathematique">Mathematique</option>
+                            <option value="Informatique">Informatique</option>
+                            <option value="Physique">Physique</option>
+                            <option value="Chimie">Chimie</option>
+                        </select>
                     </div>
+
+                    <div class="join-btn mt-3 mb-3 text-center">
+                        <button class="btn btn-outline-primary" type="submit">Join chat</button>
                     </div>
                 </div>
             </div>
         </div>
-    
     </form>
 
     
     <script src="/Boostarp/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
