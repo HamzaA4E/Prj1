@@ -1,46 +1,61 @@
 const express = require('express');
 const http = require('http');
-const path = require('path')
-const socketio = require('socket.io')
+const path = require('path');
+const socketio = require('socket.io');
 
 const port = 4000;
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+// Set static folder
+app.use(express.static(path.join(__dirname)));
 
-//Set static folder
-app.use(express.static(path.join(__dirname)))
+// Store active users and rooms
+const activeUsers = {};
 
-//Run when a client connect
+// Run when a client connects
 io.on('connection', (socket) => {
     console.log('A user has entered the chat');
 
-    // Listen for the username from the client
-    socket.on('join-chat', ({username,room}) => {
+    // Listen for the username and room from the client
+    socket.on('join-chat', ({ username, room }) => {
+        socket.join(room);
 
-        socket.join(room)
+        // Add the user to the active users list
+        if (!activeUsers[room]) {
+            activeUsers[room] = [];
+        }
+        activeUsers[room].push(username);
+
         // Welcome the user
-        socket.emit('bot', `Welcome to UsChatting, ${username}!`);
-        
+        socket.emit('bot', `Welcome to UsChatting, ${username.charAt(0).toUpperCase() + username.slice(1)}!`);
 
-        // Broadcast to all other users
-        socket.broadcast.to(room).emit('bot', `${username} has joined the chat`);
+        // Broadcast to all other users in the room
+        socket.broadcast.to(room).emit('bot', `${username.charAt(0).toUpperCase() + username.slice(1)} has joined the chat`);
+
+        // Send the updated list of active users to everyone in the room
+        io.to(room).emit('active-users', activeUsers[room]);
 
         // Handle chat messages
         socket.on('chat-mssg', (msg) => {
-            io.to(room).emit('message', { username, message: msg }); // Sends username + message
+            io.to(room).emit('message', { username, message: msg });
         });
 
         // Handle user disconnect
         socket.on('disconnect', () => {
-            io.to(room).emit('bot', `${username} has left the chat`);
+            // Remove the user from the active users list
+            activeUsers[room] = activeUsers[room].filter(user => user !== username);
+
+            // Broadcast that the user has left
+            io.to(room).emit('bot', `${username.charAt(0).toUpperCase() + username.slice(1)} has left the chat`);
+
+            // Send the updated list of active users
+            io.to(room).emit('active-users', activeUsers[room]);
         });
     });
 });
 
-
-server.listen(port, () =>
-{
-    console.log(`Your app is running at http://localhost:${port}`)
-})
+server.listen(port, () => {
+    console.log(`Your app is running at http://localhost:${port}`);
+});

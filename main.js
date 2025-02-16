@@ -13,18 +13,31 @@ socket.emit('join-chat', { username, room });
 // Add Room to the UI
 HandleRooms(room);
 //Add user to the UI
-addUser(username);
+
 
 // Handle incoming messages
 socket.on('message', (data) => {
     outputMessage(data);
     chatSpace.scrollTop = chatSpace.scrollHeight; // Scroll to the bottom
+    
 });
 
 // Handle bot messages
 socket.on('bot', (message) => {
     outputBot(message);
-    chatSpace.scrollTop = chatSpace.scrollHeight; // Scroll to the bottom
+    chatSpace.scrollTop = chatSpace.scrollHeight;
+    updateUserList(username);
+});
+
+msg.addEventListener('input', (e) => {
+    const inputValue = e.target.value;
+    if (inputValue.length > 0) {
+        e.target.value = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
+    }
+});
+
+socket.on('active-users', (users) => {
+    updateUserList(users);
 });
 
 // Send message when the send button is clicked
@@ -89,23 +102,13 @@ function sendMessage() {
 }
 
 //Function to add users
-function addUser(username) {
+function updateUserList(users) {
     const userList = document.querySelector('.list-user');
-    const users = userList.querySelectorAll('li');
+    userList.innerHTML = ''; // Clear the current list
 
-    // Check if the user already exists in the list
-    let userExists = false;
     users.forEach((user) => {
-        if (user.textContent === username) {
-            userExists = true;
-        }
-    });
-
-    // Add the user if they don't already exist
-    if (!userExists) {
         const li = document.createElement('li');
-        li.classList.add('user');
-        li.textContent = username;
+        li.textContent = user.charAt(0).toUpperCase() + user.slice(1);
         userList.appendChild(li);
-    }
+    });
 }
