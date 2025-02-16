@@ -1,0 +1,65 @@
+body {
+    background-color: hsl(172, 58%, 79%);
+}
+
+/* En-tête */
+.head {
+    border-top-right-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 70px;
+    background-color: hsl(113, 59%, 45%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Barre latérale */
+.sidebar {
+    background-color: hsl(113, 59%, 70%);
+    min-height: 300px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+/* Espace de chat */
+.chat-space {
+    background-color: white;
+    height: 60vh;
+    overflow-y: auto;
+}
+
+/* Messages */
+.chat {
+    background-color: hsl(113, 59%, 90%);
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+    max-width: 80%;
+}
+
+/* Barre d'envoi */
+.mssg-bar {
+    background-color: hsl(113, 59%, 45%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.mssg-bar input {
+    flex: 1;
+    width: 100%;
+    border: none;
+    padding: 8px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.mssg-bar button {
+    border: none;
+    height: 40px;
+    width: 50px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}

@@ -1,0 +1,34 @@
+
+body
+{
+    background-color: hsl(172, 58%, 79%);;
+}
+
+.form
+{
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: hsl(113, 59%, 70%);
+}
+
+.head
+{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: calc(70px);
+    background-color: hsl(113, 59%, 45%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home
+{
+    width:500px;
+    min-height: 300px;
+    border-radius: 50px;
+}
+select
+{
+    height: 35px;
+}
+
