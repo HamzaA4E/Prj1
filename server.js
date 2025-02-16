@@ -16,7 +16,7 @@ const activeUsers = {};
 
 // Run when a client connects
 io.on('connection', (socket) => {
-    console.log('A user has entered the chat');
+  
 
     // Listen for the username and room from the client
     socket.on('join-chat', ({ username, room }) => {

@@ -60,3 +60,60 @@ body {
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
 }
+
+/* Users */
+.nom-salon div
+{
+    background-color: hsl(113, 64%, 85%);
+    padding: 0.5em;
+}
+/* Style for bot messages */
+.bot-message {
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 10px;
+    width: fit-content;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-style: italic; /* Italic text */
+    color: #555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style for the bot message header */
+.bot-message h4 {
+    color: #007bff; /* Blue text for the bot name */
+    margin-bottom: 5px;
+}
+
+/* Style for the bot message timestamp */
+.bot-message span {
+    font-size: 0.8em;
+    margin-left: 20px;
+    color: #888; /* Light gray for the timestamp */
+}
+
+
+
+.user-message {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+
+/* Style for the bot message header */
+.user-message h4 {
+    color: #007bff; /* Blue text for the bot name */
+    margin-bottom: 5px;
+}
+
+/* Style for the bot message timestamp */
+.user-message span {
+    font-size: 0.8em;
+    color: #888; /* Light gray for the timestamp */
+}
+

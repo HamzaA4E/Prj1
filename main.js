@@ -62,10 +62,10 @@ function outputMessage(data) {
     const hour = date.getHours().toString().padStart(2, '0');
     const minute = date.getMinutes().toString().padStart(2, '0');
     const div = document.createElement('div');
-    div.classList.add('chat');
+    div.classList.add('chat','user-message');
     div.innerHTML = `
-        <h4>${username.charAt(0).toUpperCase() + username.slice(1)} <span>${hour}:${minute}</span></h4>
-        <p>${message}</p>
+        <h4>${username.charAt(0).toUpperCase() + username.slice(1)} </h4>
+        <p>${message}</p><span>${hour}:${minute}</span>
     `;
     chatSpace.appendChild(div);
 }
@@ -78,8 +78,8 @@ function outputBot(message) {
     const div = document.createElement('div');
     div.classList.add('chat', 'bot-message');
     div.innerHTML = `
-        <h4>BootChat <span>${hour}:${minute}</span></h4>
         <p>${message}</p>
+        <span>${hour}:${minute}</span>
     `;
     chatSpace.appendChild(div);
 }
@@ -89,7 +89,7 @@ function HandleRooms(room)
 {
     const div = document.createElement('div');
     div.classList.add('nom-salon');
-    div.innerHTML = `<h6>${room}</h6>`;
+    div.innerHTML = `<h5>${room}</h5>`;
     document.querySelector('.nom-salon').appendChild(div)
 }
 // Function to send a message
