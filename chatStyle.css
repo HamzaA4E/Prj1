@@ -4,8 +4,6 @@ body {
 
 /* En-tête */
 .head {
-    border-top-right-radius: 10px;
-    border-top-right-radius: 10px;
     height: 70px;
     background-color: hsl(113, 59%, 45%);
     display: flex;
@@ -17,14 +15,11 @@ body {
 .sidebar {
     background-color: hsl(113, 59%, 70%);
     min-height: 300px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
 }
 
 /* Espace de chat */
 .chat-space {
     background-color: white;
-    height: 60vh;
     overflow-y: auto;
 }
 
@@ -43,8 +38,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    
 }
 
 .mssg-bar input {
