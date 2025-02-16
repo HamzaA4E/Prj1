@@ -12,9 +12,11 @@ const io = socketio(server);
 app.use(express.static(path.join(__dirname)))
 
 //Run when a client connect
-io.on('connection', (socket)=>
+io.on('connection', socket=>
 {
-    console.log("A user has enter the chat")
+    console.log("A user has enter the chat");
+
+    socket.emit('message', "Welcome to UsChatting");
 })
 
 
