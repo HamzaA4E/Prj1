@@ -25,6 +25,7 @@ socket.on('message', (data) => {
 // Handle bot messages
 socket.on('bot', (message) => {
     outputBot(message);
+    msg.focus();
     chatSpace.scrollTop = chatSpace.scrollHeight;
     updateUserList(username);
 });
