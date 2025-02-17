@@ -55,6 +55,11 @@ app.post('/signin', async (req, res) => {
   }
 });
 
+app.get("/api/protected", verifyToken, (req, res) => {
+  res.json({ msg: "Accès autorisé", user: req.user });
+});
+
+
 // Start server
 app.listen(process.env.PORT, () => {
   console.log(`Server running on http://localhost:${process.env.PORT}`);

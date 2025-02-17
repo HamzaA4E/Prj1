@@ -15,7 +15,7 @@
     />
 </head>
 <body class="vh-100 d-flex justify-content-center align-items-center">
-    <form action="chat.html" method="GET">
+    <form id="authForm">
         <div class="home container d-flex justify-content-center align-items-center">
             <div class="row">
                 <div class="head text-center">
@@ -25,20 +25,9 @@
                 <div class="form container">
                     <div class="user text-start mt-4">
                         <label class="fs-4" for="username">Nom d'utilisateur</label><br>
-                        <input type="text"
-                               placeholder="Enter votre nom..."
-                               name="username"
-                               id="username"
-                               class="form-control"
-                               required
-                               autofocus>
+                        <input type="text" id="username" placeholder="Entrez votre nom..." class="form-control" required autofocus>
                         <label class="fs-4 mt-3" for="password">Mot de passe</label><br>
-                        <input type="password"
-                               placeholder="Enter votre mot de passe..."
-                               name="password"
-                               id="password"
-                               class="form-control"
-                               required>
+                        <input type="password" id="password" placeholder="Entrez votre mot de passe..." class="form-control" required>
                     </div>
 
                     <div class="room text-start mt-3">
@@ -52,15 +41,16 @@
                     </div>
 
                     <div class="join-btn mt-3 mb-3 justify-content-center d-flex gap-5">
-                        <button class="btn btn-outline-primary" type="submit">Sign in</button>
-                        <button class="btn btn-outline-success" type="button">Sign up</button>
+                        <button type="button" class="btn btn-outline-primary" id="signInBtn">Sign in</button>
+                        <button type="button" class="btn btn-outline-success" id="signUpBtn">Sign up</button>
                     </div>
                 </div>
             </div>
         </div>
     </form>
 
-    
     <script src="/Boostarp/js/bootstrap.bundle.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script> <!-- Fichier JavaScript externe -->
 </body>
 </html>

@@ -5,7 +5,12 @@ const chatSpace = document.querySelector('.chat-space');
 
 
 // Get username and room from query parameters
-const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true });
+const { username, room, token } = Qs.parse(location.search, { ignoreQueryPrefix: true }) || {};
+const savedUsername = localStorage.getItem('username');
+const savedRoom = localStorage.getItem('room');
+
+
+
 
 // Emit the 'join-chat' event with username and room
 socket.emit('join-chat', { username, room });
@@ -113,3 +118,7 @@ function updateUserList(users) {
         userList.appendChild(li);
     });
 }
+
+
+
+
