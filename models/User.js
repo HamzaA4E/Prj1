@@ -9,17 +9,28 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        select: false
     },
     createdAt: {
         type: Date,
         default: Date.now
     },
     rooms: {
-        type: [String], // Tableau des salons visités
+        type: [String],
         default: []
+    },
+    unreadMessages: {
+        type: Map,
+        of: Number,
+        default: () => new Map().set('general', 0) // Initialisation explicite
     }
 });
 
-// Exporter le modèle pour pouvoir l'utiliser dans d'autres parties de l'application
+UserSchema.methods.addRoom = function(room) {
+    if (!this.rooms.includes(room)) {
+        this.rooms.push(room);
+    }
+};
+
 module.exports = mongoose.model('User', UserSchema);

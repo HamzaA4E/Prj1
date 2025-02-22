@@ -9,6 +9,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px; /* Ajouter un padding pour éviter les chevauchements */
 }
 
 /* Barre latérale */
@@ -44,7 +45,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 .mssg-bar input {
@@ -65,11 +65,11 @@ body {
 }
 
 /* Users */
-.nom-salon div
-{
+.nom-salon div {
     background-color: hsl(113, 64%, 85%);
     padding: 0.5em;
 }
+
 /* Style for bot messages */
 .bot-message {
     background-color: #f0f0f0; /* Light gray background */
@@ -96,8 +96,6 @@ body {
     margin-left: 20px;
     color: #888; /* Light gray for the timestamp */
 }
-
-
 
 /* Message de l'utilisateur */
 .user-message {
@@ -128,3 +126,160 @@ body {
 
 
 
+/* En-tête */
+.head {
+    height: 70px;
+    background-color: hsl(113, 59%, 45%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Ajouter un padding pour éviter les chevauchements */
+}
+
+/* Barre de recherche */
+#search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espace entre l'input et le bouton */
+    margin-left: auto; /* Pousse la barre de recherche à droite */
+    margin-right: 20px; /* Espace entre la barre de recherche et le bouton du menu */
+}
+
+#search-input {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#search-button {
+    width: 40px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+}
+
+/* Sandwich Bar */
+.sandwich-bar {
+    position: relative; /* Changez de fixed à relative pour l'intégrer dans l'en-tête */
+    z-index: 1000;
+}
+
+#menu-toggle {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#menu-toggle:hover {
+    background-color: #0056b3;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0; /* Aligner le menu à droite */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu ul li:last-child {
+    border-bottom: none;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.menu ul li a i {
+    margin-right: 10px;
+}
+
+.menu ul li a:hover {
+    background-color: #f8f9fa;
+}
+
+/* Afficher le menu lorsque le bouton est cliqué */
+.menu.active {
+    display: block;
+}
+
+
+/* Boîte de dialogue pour créer un nouveau salon */
+#add-room-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+#add-room-modal h3 {
+    margin-bottom: 15px;
+}
+
+#add-room-modal input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#add-room-modal button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#add-room-modal #create-room-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+#add-room-modal #create-room-btn:hover {
+    background-color: #0056b3;
+}
+
+#add-room-modal #cancel-room-btn {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+#add-room-modal #cancel-room-btn:hover {
+    background-color: #e9ecef;
+}

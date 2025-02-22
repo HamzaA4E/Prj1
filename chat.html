@@ -1,58 +1,84 @@
+<!-- chat.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Boostarp/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/Boostarp/css/all.min.css " />
+    <link rel="stylesheet" href="/Boostarp/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>UsChatting</title>
     <link rel="stylesheet" href="chatStyle.css">
 </head>
 <body>
-    <div class="home container-fluid vh-100 d-flex flex-column" >
-        <div class="row">
-            <div class="head d-flex justify-content-between" >
-                <h3><i class="fa-regular fa-comments"></i> UsChatting</h3>
-                <a type="button" href="./index.html"><button class="btn btn-danger">Quiter le salon</button></a>
-                <a type="button" href="./index.html"><button id="logout-btn" class="btn btn-danger">Se déconnecter</button></a>
-                
-
+    <!-- chat.html -->
+<div class="home container-fluid vh-100 d-flex flex-column">
+    <!-- En-tête -->
+    <div class="row">
+        <div class="head d-flex justify-content-between align-items-center">
+            <h3><i class="fa-regular fa-comments"></i> UsChatting</h3>
+            
+            <!-- Barre de recherche -->
+            <div id="search-bar">
+                <input type="text" id="search-input" placeholder="Rechercher un message...">
+                <button id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
 
-            <div class="sidebar col-lg-3 col-md-4 col-sm-5 col-12 pe-3 ps-3">
-                <div class="nom-salon">
-                    <h3 class="fs-3 mt-4"> <i class="fa-solid fa-comment"></i> Salon </h3>
-                </div>
-                <div class="users">
-                    <h3 class="fs-3 mt-4"> <i class="fa-solid fa-users"></i> Utilisateur</h3>
-                    <ul class="list-unstyled lh-lg list-user">
+            <!-- Sandwich Bar -->
+            <div class="sandwich-bar">
+                <button id="menu-toggle" class="btn btn-light">
+                    <i class="fa-solid fa-bars"></i> <!-- Icône de menu -->
+                </button>
+                <div id="menu" class="menu">
+                    <ul>
+                        <!-- <li><a href="#" id="search-message-btn"><i class="fa-solid fa-magnifying-glass"></i> Chercher un message</a></li> -->
+                        <li><a href="#" id="quit-room-btn"><i class="fa-solid fa-door-open"></i> Quitter le salon</a></li>
+                        <li><a href="#" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Se déconnecter</a></li>
                     </ul>
                 </div>
             </div>
-
-            <div class="chat-space col-lg-9 col-md-8 col-sm-7 col-12" style="height: calc(100vh - 142px);">
-            </div>
-            <div class="mssg-bar p-3">
-                <input  type="text"
-                        placeholder="Message ..."
-                        id="message-input"
-                        required
-                        ><button class="pe-3" id="send-button"><i class="fa-solid fa-paper-plane"></i></button>
-                
-            </div>
-            
         </div>
 
+        <!-- Sidebar et Chat -->
+        <div class="sidebar col-lg-3 col-md-4 col-sm-5 col-12 pe-3 ps-3">
+            <div class="nom-salon">
+                <!-- Liste des salons -->
+            </div>
+            <div class="btn-add">
+                <button class="btn btn-outline-success mt-3" id="add-group-btn">Ajouter un groupe</button>
+            </div>
+            
+            <!-- Boîte de dialogue pour créer un nouveau salon -->
+            <div id="add-room-modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Créer un nouveau salon</h3>
+                    <input type="text" id="room-name-input" placeholder="Nom du salon">
+                    <button id="create-room-btn">Créer</button>
+                    <button id="cancel-room-btn">Annuler</button>
+                </div>
+            </div>
+            <div class="users">
+                <h3 class="fs-3 mt-4"> <i class="fa-solid fa-users"></i> Utilisateur</h3>
+                <ul class="list-unstyled lh-lg list-user">
+                </ul>
+            </div>
+        </div>
 
+        <div class="chat-space col-lg-9 col-md-8 col-sm-7 col-12" style="height: calc(100vh - 142px);">
+        </div>
+        <div class="mssg-bar p-3">
+            <input type="text" placeholder="Message ..." id="message-input" required>
+            <button class="pe-3" id="send-button"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
     </div>
-
-
+</div>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.13.1/qs.min.js" integrity="sha512-dOI8+lI91wsLJEMBQcZBvatYrawv84SrgkRF/6sIcjhYXgANOvOEkBtCSf/ZkdZ7Mw0u+VUxDgalDZA1qKWTFQ==" 
             crossorigin="anonymous" 

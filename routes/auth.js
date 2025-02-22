@@ -3,17 +3,19 @@ const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const verifyToken = require('../middleware/verifyToken'); // Importer le middleware
+const verifyToken = require('../middleware/verifyToken');
 
+const Room = require('../models/Room'); // Importer le modèle Room
+const Message = require('../models/Message');
 const router = express.Router();
 
+// Route protégée
 router.get("/protected", verifyToken, (req, res) => {
     res.json({ msg: "Accès autorisé", user: req.user });
 });
 
-// @route   POST /api/auth/signup
-// @desc    Inscription utilisateur
-// @access  Public
+
+// Inscription utilisateur
 router.post(
     '/signup',
     [
@@ -56,9 +58,7 @@ router.post(
     }
 );
 
-// @route   POST /api/auth/login
-// @desc    Connexion utilisateur
-// @access  Public
+// Connexion utilisateur
 router.post(
     '/login',
     [
@@ -71,19 +71,23 @@ router.post(
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { username, password } = req.body;
+        const { username, password, room } = req.body;
 
         try {
-            // Vérifier si l'utilisateur existe
-            let user = await User.findOne({ username });
+            let user = await User.findOne({ username }).select('+password');
             if (!user) {
                 return res.status(400).json({ msg: 'Utilisateur non trouvé' });
             }
 
-            // Vérifier le mot de passe
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
                 return res.status(400).json({ msg: 'Mot de passe incorrect' });
+            }
+
+            // Ajouter la salle si elle n'existe pas déjà
+            if (room) {
+                user.addRoom(room); // Utiliser la méthode du modèle pour éviter les doublons
+                await user.save();
             }
 
             // Générer un token JWT
@@ -91,22 +95,82 @@ router.post(
             jwt.sign(
                 payload,
                 process.env.JWT_SECRET,
-                { expiresIn: '1h' }, // Le token expire dans 1h
-                (err, token) => {
+                { expiresIn: '1h' },
+                async (err, token) => {
                     if (err) throw err;
-                    res.json({ token });
+
+                    // Récupérer la liste des salons de l'utilisateur
+                    const user = await User.findOne({ username });
+                    const rooms = user.rooms.map(r => ({
+                        name: r,
+                        unreadCount: user.unreadMessages.get(r) || 0
+                    }));
+
+                    // Renvoyer le token et les salons
+                    res.json({ token, rooms });
                 }
             );
         } catch (err) {
             console.error(err.message);
-            res.status(500).send('Erreur serveur');
+            res.status(500).json({ msg: 'Erreur serveur' });
         }
     }
 );
 
-// @route   GET /api/auth/protected
-// @desc    Route protégée (requiert un token JWT valide)
-// @access  Private
+// Route pour rechercher des messages
+router.get('/search-messages', async (req, res) => {
+    const { room, query } = req.query;
 
+    if (!room || !query) {
+        return res.status(400).json({ msg: 'Room and query are required' });
+    }
+
+    try {
+        const messages = await Message.find({
+            room: room,
+            message: { $regex: query, $options: 'i' } // Recherche insensible à la casse
+        }).sort({ timestamp: 1 });
+
+        res.json(messages);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// Route pour créer un salon
+router.post('/create-room', verifyToken, async (req, res) => {
+    const { roomName } = req.body;
+
+    if (!roomName) {
+        return res.status(400).json({ msg: 'Le nom du salon est requis' });
+    }
+
+    try {
+        // Vérifier si le salon existe déjà
+        const existingRoom = await Room.findOne({ name: roomName });
+        if (existingRoom) {
+            return res.status(400).json({ msg: 'Ce salon existe déjà' });
+        }
+
+        // Créer un nouveau salon
+        const newRoom = new Room({ name: roomName });
+        await newRoom.save();
+
+        // Ajouter la salle à l'utilisateur
+        const user = await User.findById(req.user.id);
+        if (!user) {
+            return res.status(404).json({ msg: 'Utilisateur non trouvé' });
+        }
+
+        user.addRoom(roomName); // Utiliser la méthode du modèle pour éviter les doublons
+        await user.save();
+
+        res.status(201).json({ msg: 'Salon créé avec succès', room: newRoom });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Erreur serveur');
+    }
+});
 
 module.exports = router;
