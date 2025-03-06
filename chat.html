@@ -1,4 +1,3 @@
-<!-- chat.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,69 +16,140 @@
 </head>
 <body>
     <!-- chat.html -->
-<div class="home container-fluid vh-100 d-flex flex-column">
-    <!-- En-tête -->
-    <div class="row">
-        <div class="head d-flex justify-content-between align-items-center">
-            <h3><i class="fa-regular fa-comments"></i> UsChatting</h3>
-            
-            <!-- Barre de recherche -->
-            <div id="search-bar">
-                <input type="text" id="search-input" placeholder="Rechercher un message...">
-                <button id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <div class="home container-fluid vh-100 d-flex flex-column">
+        <!-- En-tête -->
+        <div class="row">
+            <div class="head d-flex justify-content-between align-items-center">
+                <h3><i class="fa-regular fa-comments"></i> UsChatting</h3>
+                
+                <!-- Barre de recherche -->
+                <div id="search-bar">
+                    <input type="text" id="search-input" placeholder="Rechercher un message...">
+                    <button id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+
+                <!-- Sandwich Bar -->
+                <div class="sandwich-bar">
+                    <button id="menu-toggle" class="btn btn-light">
+                        <i class="fa-solid fa-bars"></i> <!-- Icône de menu -->
+                    </button>
+                    <!-- Inside the menu -->
+            <div id="menu" class="menu">
+                <ul>
+                    <li>
+                        <button id="quit-room-btn" class="btn btn-outline-warning">
+                            <i class="fa-solid fa-door-open"></i> Quitter le salon
+                        </button>
+                    </li>
+                   
+                    <li>
+                        <button id="invite-friends-btn" class="btn btn-outline-info">
+                            <i class="fa-solid fa-user-plus"></i> Inviter des amis
+                        </button>
+                    </li>
+                    <li>
+                        <button id="settings-btn" class="btn btn-light">
+                            <i class="fa-solid fa-gear"></i> Paramètres
+                        </button>
+                    </li>
+                    <li>
+                        <a href="#" id="logout-btn">
+                            <i class="fa-solid fa-right-from-bracket"></i> Se déconnecter
+                        </a>
+                    </li>
+                </ul>
+            </div>
+                </div>
             </div>
 
-            <!-- Sandwich Bar -->
-            <div class="sandwich-bar">
-                <button id="menu-toggle" class="btn btn-light">
-                    <i class="fa-solid fa-bars"></i> <!-- Icône de menu -->
-                </button>
-                <div id="menu" class="menu">
-                    <ul>
-                        <!-- <li><a href="#" id="search-message-btn"><i class="fa-solid fa-magnifying-glass"></i> Chercher un message</a></li> -->
-                        <li><a href="#" id="quit-room-btn"><i class="fa-solid fa-door-open"></i> Quitter le salon</a></li>
-                        <li><a href="#" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Se déconnecter</a></li>
+            <!-- Sidebar et Chat -->
+            <div class="sidebar col-lg-3 col-md-4 col-sm-5 col-12 pe-3 ps-3">
+                <div class="nom-salon">
+                    <!-- Liste des salons -->
+                </div>
+                <div class="btn-add">
+                    <button class="btn btn-outline-warning mt-3" id="add-group-btn">Ajouter un salon</button>
+                </div>
+                
+                <div class="btn-del">
+                    <button class="btn btn-outline-danger mt-3" id="delete-group-btn">Supprimer un salon</button>
+                </div>
+
+
+
+                <!-- Dans la barre de menu ou dans un endroit approprié -->
+
+
+<!-- Boîte de dialogue des paramètres -->
+                    <div id="settings-modal" style="display: none;">
+                        <div class="modal-content">
+                            <h3 class="settings-title" class="p-3">Paramètres</h3> <!-- Ajoutez la classe ici -->
+                            <p class="settings-title p-3 mt-2">Votre ID utilisateur : <span id="user-id-display"></span></p>
+                            <button id="toggle-dark-mode-btn" class="btn btn-dark p-3 mt-2">
+                                Activer/Désactiver le mode sombre
+                            </button>
+                            <button id="close-settings-btn" class="btn btn-secondary p-3 mt-2">Fermer</button>
+                        </div>
+                    </div>
+
+                <div id="add-members-modal" style="display: none;">
+                    <div class="modal-content">
+                        <h3 class="p-3">Ajouter des membres au salon</h3>
+                        <input type="search" id="add-members-input" class="p-3" placeholder="Noms d'utilisateurs séparés par des virgules">
+                        <button id="add-members-btn" class="p-3 mt-2">Ajouter</button>
+                        <button id="cancel-add-members-btn" class="p-3 mt-2">Annuler</button>
+                    </div>
+                </div>
+               
+                <!-- <audio id="notification-sound" src="./sonnerie-message-received.mp3"></audio> -->
+
+                <!-- Boîte de dialogue pour créer un nouveau salon -->
+                <div id="add-room-modal" style="display: none;">
+                    <div class="modal-content">
+                        <h3 class="p-3">Créer un nouveau salon</h3>
+                        <input type="text" id="room-name-input" class="p-3 mt-2" placeholder="Nom du salon">
+                        <button id="create-room-btn" class="p-3 mt-2">Créer</button>
+                        <button id="cancel-room-btn" class="p-3 mt-2">Annuler</button>
+                    </div>
+                </div>
+
+                <!-- Boîte de dialogue pour supprimer un salon -->
+                <div id="delete-room-modal" style="display: none;">
+                    <div class="modal-content">
+                        <h3 class="p-3">Supprimer un salon</h3>
+                        <div id="delete-room-list" class="p-3 mt-2">
+                            <!-- Liste des salons avec des cases à cocher -->
+                        </div>
+                        <button id="confirm-delete-room-btn" class="p-3 mt-2">Supprimer</button>
+                        <button id="cancel-delete-room-btn" class="p-3 mt-2">Annuler</button>
+                    </div>
+                </div>
+
+
+
+                               <!-- Boîte de dialogue pour ajouter des membres à un salon -->
+
+
+                <div class="users">
+                    <h3 class="fs-3 mt-4"> <i class="fa-solid fa-users"></i> Utilisateur</h3>
+                    <ul class="list-unstyled lh-lg list-user">
                     </ul>
                 </div>
             </div>
-        </div>
 
-        <!-- Sidebar et Chat -->
-        <div class="sidebar col-lg-3 col-md-4 col-sm-5 col-12 pe-3 ps-3">
-            <div class="nom-salon">
-                <!-- Liste des salons -->
+            <!-- Espace de chat -->
+            <div class="chat-space col-lg-9 col-md-8 col-sm-7 col-12" >
             </div>
-            <div class="btn-add">
-                <button class="btn btn-outline-success mt-3" id="add-group-btn">Ajouter un groupe</button>
-            </div>
-            
-            <!-- Boîte de dialogue pour créer un nouveau salon -->
-            <div id="add-room-modal" style="display: none;">
-                <div class="modal-content">
-                    <h3>Créer un nouveau salon</h3>
-                    <input type="text" id="room-name-input" placeholder="Nom du salon">
-                    <button id="create-room-btn">Créer</button>
-                    <button id="cancel-room-btn">Annuler</button>
-                </div>
-            </div>
-            <div class="users">
-                <h3 class="fs-3 mt-4"> <i class="fa-solid fa-users"></i> Utilisateur</h3>
-                <ul class="list-unstyled lh-lg list-user">
-                </ul>
-            </div>
-        </div>
 
-        <div class="chat-space col-lg-9 col-md-8 col-sm-7 col-12" style="height: calc(100vh - 142px);">
-        </div>
-        <div class="mssg-bar p-3">
-            <input type="text" placeholder="Message ..." id="message-input" required>
-            <button class="pe-3" id="send-button"><i class="fa-solid fa-paper-plane"></i></button>
-        </div>
-    </div>
-</div>
+            <!-- Barre d'envoi de message -->
+            <div class="mssg-bar p-3">
+                <input type="text" placeholder="Message ..." id="message-input" required>
+                <button class="pe-3" id="send-button"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.13.1/qs.min.js" integrity="sha512-dOI8+lI91wsLJEMBQcZBvatYrawv84SrgkRF/6sIcjhYXgANOvOEkBtCSf/ZkdZ7Mw0u+VUxDgalDZA1qKWTFQ==" 
             crossorigin="anonymous" 
             referrerpolicy="no-referrer">
@@ -87,5 +157,68 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="./main.js"></script>
     <script src="/Boostarp/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.getElementById('invite-button').addEventListener('click', async () => {
+    const userId = parseInt(document.getElementById('user-id-input').value.trim());
+
+    if (!userId) {
+        alert('Veuillez entrer un ID d\'utilisateur');
+        return;
+    }
+
+    const userExists = await checkUserExists(userId);
+
+    if (userExists) {
+        // L'utilisateur existe, vous pouvez l'inviter
+        inviteUserToRoom(userId);
+    } else {
+        alert('L\'utilisateur n\'existe pas.');
+    }
+});
+
+async function checkUserExists(userId) {
+    try {
+        const response = await fetch('/api/auth/check-user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId }),
+        });
+
+        const data = await response.json();
+        return data.msg === 'Utilisateur trouvé';
+    } catch (err) {
+        console.error('Erreur lors de la vérification de l\'utilisateur :', err);
+        return false;
+    }
+}
+            const roomName = 'NomDuSalon'; // Remplacez par le nom du salon
+            try {
+                const response = await fetch('/api/invite-to-room', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({ roomName, username }),
+                });
+    
+                const data = await response.json();
+    
+                if (!response.ok) {
+                    throw new Error(data.msg || 'Erreur lors de l\'invitation');
+                }
+    
+                alert('Utilisateur invité avec succès');
+            } catch (err) {
+                console.error('Erreur lors de l\'invitation :', err);
+                alert('Une erreur est survenue');
+            }
+        
+    </script>
+  
+    
 </body>
 </html>

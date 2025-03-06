@@ -1,148 +1,151 @@
+/* Styles généraux pour le corps de la page */
 body {
-    background-color: hsl(172, 58%, 79%);
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e); /* Dégradé sombre */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+/* Conteneur principal */
+.home {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 /* En-tête */
 .head {
     height: 70px;
-    background-color: hsl(113, 59%, 45%);
+    background: linear-gradient(135deg, hsl(245, 39%, 28%), hsl(245, 39%, 22%)); /* Dégradé violet */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px; /* Ajouter un padding pour éviter les chevauchements */
+    padding: 0 20px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Barre latérale */
 .sidebar {
-    background-color: hsl(113, 59%, 70%);
-    min-height: 300px;
+    background: linear-gradient(135deg, hsl(245, 39%, 34%), hsl(245, 39%, 28%)); /* Dégradé violet */
+    padding: 15px;
+    position: fixed;
+    overflow-y: auto;
+    top: 70px;
+    left: 0;
+    width: 25%;
+    height: calc(100vh - 70px);
+    
 }
-
 /* Espace de chat */
 .chat-space {
-    background-color: white;
+    background-color: #eee; /* Fond clair pour l'espace de chat */
     overflow-y: auto;
-    max-height: calc(100vh - 142px); /* Limite la hauteur */
     padding: 15px;
+    margin-left: 25%;
+    height: calc(100vh - 70px - 60px);
+    padding-bottom: 70px;
+    width: 75%;
 }
 
-/* Messages */
-.chat {
-    background-color: hsl(113, 59%, 90%);
-    border-radius: 10px;
-    padding: 10px;
-    min-width: 50%;
-    max-width: 90%;
-    width: fit-content;
-    margin-top: 1rem;
-    margin-left: 3rem;
-    padding: 0.25rem;
+.chat p{
+    font-size: 1.3rem;
 }
 
-/* Barre d'envoi */
+.nom-salon
+{
+    color: white;
+}
+
+
+.users{
+    color: white;
+}
+/* Barre de message */
 .mssg-bar {
-    background-color: hsl(113, 59%, 45%);
+    background:  linear-gradient(135deg, hsl(245, 39%, 28%), hsl(245, 39%, 22%));/* Dégradé violet */
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 25%);
+    margin-left: 25%;
+    color: white;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .mssg-bar input {
     flex: 1;
-    width: 100%;
+    padding: 10px;
     border: none;
-    padding: 8px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
+    border-radius: 5px;
+    background-color: #e0dede; /* Fond clair pour l'input */
 }
 
 .mssg-bar button {
+    padding: 10px 15px;
     border: none;
-    height: 40px;
-    width: 50px;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-}
-
-/* Users */
-.nom-salon div {
-    background-color: hsl(113, 64%, 85%);
-    padding: 0.5em;
-}
-
-/* Style for bot messages */
-.bot-message {
-    background-color: #f0f0f0; /* Light gray background */
-    padding: 10px;
-    width: fit-content;
-    margin: 10px 0;
+    background: linear-gradient(135deg, hsl(244, 39%, 61%), hsl(245, 39%, 34%)); /* Dégradé violet */
+    color: white;
     border-radius: 5px;
-    font-style: italic; /* Italic text */
-    color: #555;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Style for the bot message header */
-.bot-message h4 {
-    color: #007bff; /* Blue text for the bot name */
-    margin-bottom: 5px;
-}
-
-/* Style for the bot message timestamp */
-.bot-message span {
-    font-size: 0.8em;
-    margin-left: 20px;
-    color: #888; /* Light gray for the timestamp */
-}
-
-/* Message de l'utilisateur */
-.user-message {
-    background-color: hsl(113, 59%, 70%); /* Vert clair */
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 1.1em;
-    max-width: 80%;
+    cursor: pointer;
     margin-left: 10px;
-    margin-top: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    word-wrap: break-word; /* Évite les débordements avec des mots longs */
+    transition: all 0.3s ease;
 }
 
-/* Style pour l'en-tête du message utilisateur */
-.user-message h4 {
-    color: #ffffff; /* Titre du message en blanc */
+.mssg-bar button:hover {
+    background: linear-gradient(135deg, hsl(245, 100%, 73%), hsl(260, 2%, 34%)); /* Inversion du dégradé */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Messages */
+.chat {
+    background-color: #f0e6ff; /* Violet très clair */
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    margin-left: 0;
+}
+.user-message {
+    background-color: #573b8a; /* Violet foncé */
+    color: white;
+    margin-right: 0;
+}
+
+.bot-message {
+    background-color: #e0d2f5; /* Violet clair */
+    color: #333;
+    margin-left: 0;
+}
+
+
+.chat h4 {
     margin-bottom: 5px;
+    color:#ede0fd;
 }
 
-/* Style pour la date du message */
-.user-message span {
+.chat span {
     font-size: 0.8em;
-    color: #ddd; /* Gris clair pour la date */
-}
-
-
-
-/* En-tête */
-.head {
-    height: 70px;
-    background-color: hsl(113, 59%, 45%);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px; /* Ajouter un padding pour éviter les chevauchements */
+    color: #888;
+    margin-left: 10px;
 }
 
 /* Barre de recherche */
 #search-bar {
     display: flex;
     align-items: center;
-    gap: 10px; /* Espace entre l'input et le bouton */
-    margin-left: auto; /* Pousse la barre de recherche à droite */
-    margin-right: 20px; /* Espace entre la barre de recherche et le bouton du menu */
+    gap: 10px;
+    margin-left: auto;
+    margin-right: 20px;
 }
 
 #search-input {
@@ -150,12 +153,13 @@ body {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    background-color: #e0dede; /* Fond clair pour l'input */
 }
 
 #search-button {
     width: 40px;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #6d44b8; /* Violet plus clair */
     color: white;
     border: none;
     border-radius: 5px;
@@ -163,17 +167,17 @@ body {
 }
 
 #search-button:hover {
-    background-color: #0056b3;
+    background-color: #885cda;
 }
 
 /* Sandwich Bar */
 .sandwich-bar {
-    position: relative; /* Changez de fixed à relative pour l'intégrer dans l'en-tête */
+    position: relative;
     z-index: 1000;
 }
 
 #menu-toggle {
-    background-color: #007bff;
+    background-color: #6d44b8;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -182,14 +186,14 @@ body {
 }
 
 #menu-toggle:hover {
-    background-color: #0056b3;
+    background-color: #885cda;
 }
 
 .menu {
     display: none;
     position: absolute;
     top: 50px;
-    right: 0; /* Aligner le menu à droite */
+    right: 0;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -212,74 +216,427 @@ body {
     border-bottom: none;
 }
 
+.menu ul li button,
 .menu ul li a {
-    text-decoration: none;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
     color: #333;
+    cursor: pointer;
     display: flex;
     align-items: center;
 }
 
-.menu ul li a i {
-    margin-right: 10px;
-}
 
+
+.menu ul li button:hover,
 .menu ul li a:hover {
     background-color: #f8f9fa;
 }
 
-/* Afficher le menu lorsque le bouton est cliqué */
+.menu ul li button i,
+.menu ul li a i {
+    margin-right: 10px;
+}
+
 .menu.active {
     display: block;
 }
 
-
-/* Boîte de dialogue pour créer un nouveau salon */
-#add-room-modal {
+/* Boîtes de dialogue modales */
+#add-room-modal,
+#delete-room-modal,
+#add-members-modal,
+#settings-modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    padding: 20px;
+    padding: 30px; /* Padding augmenté pour plus d'espace */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    display: none;
+    width: 400px; /* Largeur fixe pour une meilleure présentation */
 }
 
-#add-room-modal h3 {
-    margin-bottom: 15px;
+/* Empêcher les modales Add Room et Delete Room de changer en mode sombre */
+
+/* Styles pour les boutons et champs de saisie dans les modales */
+#add-room-modal button,
+#delete-room-modal button,
+#add-room-modal input,
+#delete-room-modal input {
+    background-color: #ffffff; /* Arrière-plan blanc */
+    color: #000000; /* Texte noir */
+    border: 1px solid #ddd; /* Bordure légère */
 }
 
-#add-room-modal input {
-    width: 100%;
+/* Empêcher les boutons et champs de saisie de changer en mode sombre */
+
+
+/* Styles pour le mode sombre */
+
+/* Styles pour le badge de messages non lus (bleu) */
+/* .unread-badge {
+    background-color: #007bff; /* Bleu vif 
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+    margin-left: 5px;
+    display: inline-block;
+    text-align: center;
+    min-width: 20px;
+} */
+
+/* Styles pour le badge de mention (@) en rouge */
+/* .mention-badge {
+    color: #ff0000; /* Rouge
+    font-weight: bold;
+    margin-left: 5px;
+    display: inline-block;
+    font-size: 14px;
+} */
+
+/* Styles pour les en-têtes de date */
+.date-header {
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+    margin: 10px 0;
     padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
+    background-color: #f8f9fa; /* Arrière-plan presque blanc */
     border-radius: 5px;
+    font-size: 0.9em;
 }
 
-#add-room-modal button {
-    padding: 10px 15px;
+/* Styles pour le mode sombre */
+
+
+/* Styles de base pour les boutons */
+button {
+    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    margin-right: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#add-room-modal #create-room-btn {
-    background-color: #007bff;
+/* Bouton principal (Créer, Ajouter, Confirmer) */
+#create-room-btn,
+#add-members-btn {
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Dégradé violet à bleu */
     color: white;
 }
 
-#add-room-modal #create-room-btn:hover {
-    background-color: #0056b3;
+#confirm-delete-room-btn
+{
+    background: linear-gradient(135deg, #ec2525, #ff7777); /* Dégradé violet à bleu */
+    color: white;
 }
 
-#add-room-modal #cancel-room-btn {
-    background-color: #f8f9fa;
+#create-room-btn:hover,
+#add-members-btn:hover {
+    background: linear-gradient(135deg, #2575fc, #6a11cb); /* Inversion du dégradé */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+#confirm-delete-room-btn:hover
+{
+    background: linear-gradient(135deg, #ff2e2e, #ff0303); /* Inversion du dégradé */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Bouton secondaire (Annuler, Fermer) */
+#cancel-room-btn,
+#cancel-add-members-btn,
+#cancel-delete-room-btn,
+#close-settings-btn {
+    background: linear-gradient(135deg, #86c58f, #39f355); /* Dégradé rose à pêche */
     color: #333;
 }
 
-#add-room-modal #cancel-room-btn:hover {
-    background-color: #e9ecef;
+#cancel-room-btn:hover,
+#cancel-add-members-btn:hover,
+#cancel-delete-room-btn:hover,
+#close-settings-btn:hover {
+    background: linear-gradient(135deg, #57f86f, #18f83a); /* Inversion du dégradé */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Bouton d'ajout de groupe */
+
+
+#add-group-btn:hover {
+    
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Bouton de suppression de groupe */
+
+
+#delete-group-btn:hover {
+    
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Bouton de déconnexion */
+#logout-btn {
+    background: linear-gradient(135deg, #ff7676, #ff4e4e); /* Dégradé rouge vif */
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+#logout-btn:hover {
+    background: linear-gradient(135deg, #ff4e4e, #ff7676); /* Inversion du dégradé */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Bouton d'invitation d'amis */
+#invite-friends-btn {
+    background: linear-gradient(135deg, #f6d365, #fda085); /* Dégradé orange à pêche */
+    color: white;
+}
+
+#invite-friends-btn:hover {
+    background: linear-gradient(135deg, #fda085, #f6d365); /* Inversion du dégradé */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Bouton de paramètres */
+#settings-btn {
+    background: linear-gradient(135deg, #a18cd1, #fbc2eb); /* Dégradé violet à rose */
+    color: white;
+}
+
+#settings-btn:hover {
+    background: linear-gradient(135deg, #fbc2eb, #a18cd1); /* Inversion du dégradé */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Bouton de bascule du mode sombre */
+
+
+/* Styles pour les éléments de salons */
+.room-item {
+    background-color: #f8f9fa; /* Arrière-plan presque blanc */
+    color: #333; /* Couleur de texte sombre */
+    padding: 10px 15px; /* Padding pour l'espace intérieur */
+    margin: 5px 0; /* Marge entre les éléments */
+    border-radius: 8px; /* Coins arrondis */
+    font-size: 1.2em; /* Taille de police augmentée */
+    font-weight: bold; /* Texte en gras */
+    cursor: pointer; /* Curseur en forme de main au survol */
+    transition: all 0.3s ease; /* Transition fluide */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Effet de survol pour les éléments de salons */
+.room-item:hover {
+    background-color: #86b7fe; /* Arrière-plan légèrement plus foncé au survol */
+    transform: translateY(-2px); /* Légère élévation */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée */
+}
+
+/* Styles pour le badge de messages non lus dans les éléments de salons */
+.room-item .unread-badge {
+    background-color: #007bff; /* Bleu vif */
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+/* Styles pour le badge de mention dans les éléments de salons */
+.room-item .mention-badge {
+    color: #ff0000; /* Rouge vif */
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Styles pour la liste des utilisateurs */
+/* Styles pour la liste des utilisateurs en mode clair */
+.list-user {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-user li {
+    padding: 10px 15px;
+    border-bottom: 1px solid hsl(113, 59%, 60%); /* Bordure verte claire */
+    font-size: 1.2em;
+    color: hsl(113, 59%, 20%); /* Texte vert foncé */
+    background-color: hsl(113, 59%, 90%); /* Fond vert très clair */
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease; /* Transition fluide */
+}
+
+.list-user li:last-child {
+    border-bottom: none; /* Pas de bordure pour le dernier élément */
+}
+
+/* Effet de survol en mode clair */
+.list-user li:hover {
+    background-color: hsl(113, 59%, 85%); /* Fond légèrement plus foncé */
+    transform: translateX(5px); /* Légère translation vers la droite */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+}
+
+/* Icône à côté du nom d'utilisateur en mode clair */
+.list-user li i {
+    margin-right: 10px;
+    color: hsl(113, 59%, 40%); /* Icône verte */
+}
+
+
+/* Styles pour la liste des utilisateurs en mode sombre */
+body.dark-mode .list-user li {
+    background-color: hsl(108, 7%, 13%); /* Fond vert foncé */
+    color: hsl(0, 0%, 100%); /* Texte vert clair */
+    border-bottom: 1px solid hsl(0, 0%, 6%); /* Bordure plus foncée */
+}
+
+/* Effet de survol en mode sombre */
+body.dark-mode .list-user li:hover {
+    background-color: hsl(0, 0%, 21%); /* Fond légèrement plus clair */
+    transform: translateX(5px); /* Légère translation vers la droite */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+}
+
+/* Icône à côté du nom d'utilisateur en mode sombre */
+body.dark-mode .list-user li i {
+    color: hsl(113, 59%, 60%); /* Icône verte plus claire */
+}
+.dark-mode .user-message
+{
+    background-color: hsl(0, 2%, 28%);
+}
+
+/* Styles pour la liste des salons en mode sombre */
+body.dark-mode .room-item {
+    background-color: hsl(67, 4%, 36%);/* Fond sombre pour les éléments de la liste */
+    color: hsl(0, 0%, 80%); /* Texte clair pour le mode sombre */
+    border: 1px solid hsl(0, 2%, 30%); /* Bordure plus foncée */
+}
+
+/* Effet de survol pour les éléments de la liste en mode sombre */
+body.dark-mode .room-item:hover {
+    background-color: hsl(0, 2%, 25%); /* Fond légèrement plus clair au survol */
+    transform: translateY(-2px); /* Légère élévation */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre portée */
+}
+
+/* Styles pour le badge de messages non lus en mode sombre */
+body.dark-mode .room-item .unread-badge {
+    background-color: #007bff; /* Bleu vif */
+    color: white;
+}
+
+/* Styles pour le badge de mention en mode sombre */
+body.dark-mode .room-item .mention-badge {
+    color: #ff0000; /* Rouge vif */
+}
+
+body.dark-mode .date-header {
+    background-color: #2c2c2c; /* Arrière-plan sombre pour le mode sombre */
+    color: #ddd; /* Texte clair pour le mode sombre */
+}
+
+
+
+/* Empêcher les boutons et champs de saisie de changer en mode sombre */
+body.dark-mode #add-room-modal button,
+body.dark-mode #delete-room-modal button,
+body.dark-mode #add-room-modal input,
+body.dark-mode #delete-room-modal input {
+    background-color: #ffffff; /* Conserve l'arrière-plan blanc */
+    color: #000000; /* Conserve le texte noir */
+}
+
+/* Styles pour le mode sombre */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .chat-space
+{
+    background-color: hsl(0, 2%, 20%);
+    color: #ffffff;
+}
+
+body.dark-mode .sidebar {
+    background: linear-gradient(135deg, hsl(246, 38%, 15%), hsl(252, 8%, 12%)); /* Dégradé violet plus sombre */
+    color: #ffffff;
+}
+
+
+.dark-mode .mssg-bar{
+    background: linear-gradient(135deg, hsl(245, 33%, 6%), hsl(245, 24%, 10%));
+    color: #ffffff;
+}
+
+body.dark-mode .head {
+    background: linear-gradient(135deg, hsl(244, 36%, 9%), hsl(245, 39%, 15%)); /* Dégradé violet plus sombre */
+    color: #ffffff;
+}
+
+body.dark-mode #add-room-modal,
+body.dark-mode #delete-room-modal {
+    background-color: white; /* Conserve l'arrière-plan blanc */
+    color: #000000; /* Conserve le texte noir */
+}
+
+/* Styles pour les autres modales en mode sombre */
+body.dark-mode #add-members-modal,
+body.dark-mode #settings-modal {
+    background-color: #ffffff; /* Arrière-plan sombre */
+    color: #000000; /* Texte blanc */
+}
+
+.current-room {
+    background-color: #009af3; /* Couleur de fond différente */
+    color: white; /* Texte en blanc pour un meilleur contraste */
+    font-weight: bold; /* Texte en gras */
+}
+
+/* Styles pour le mode sombre */
+body.dark-mode .current-room {
+    background-color: #1e3a8a; /* Couleur de fond différente pour le mode sombre */
+    color: white; /* Texte en blanc pour un meilleur contraste */
+    font-weight: bold; /* Texte en gras */
+}
+
+.room-item {
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#delete-room
+{
+    font-size: 1.5rem;
+    color: #1e3a8a;
 }

@@ -1,32 +1,50 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const UserSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true
+    userId: { 
+        type: Number,
+        unique: true
     },
-    password: {
-        type: String,
-        required: true,
-        select: false
+    username: { 
+        type: String, 
+        required: true, 
+        unique: true 
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
+    password: { 
+        type: String, 
+        required: true 
     },
-    rooms: {
-        type: [String],
-        default: []
-    },
+    rooms: [{ 
+        type: String 
+    }],
     unreadMessages: {
         type: Map,
         of: Number,
-        default: () => new Map().set('general', 0) // Initialisation explicite
-    }
+        default: () => new Map()
+    },
+    mentions: {
+        type: Map,
+        of: Boolean,
+        default: () => new Map()
+    },
+    notifications: [{
+        room: String,
+        message: String,
+        timestamp: { 
+            type: Date, 
+            default: Date.now 
+        }
+    }]
 });
 
+// Appliquer l'auto-incrémentation pour userId
+UserSchema.plugin(AutoIncrement, { 
+    inc_field: 'userId', 
+    start_seq: 20251 // Démarre la séquence à 20251
+});
+
+// Méthode pour ajouter une salle à l'utilisateur
 UserSchema.methods.addRoom = function(room) {
     if (!this.rooms.includes(room)) {
         this.rooms.push(room);

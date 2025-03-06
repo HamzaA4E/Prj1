@@ -15,42 +15,69 @@
     />
 </head>
 <body class="vh-100 d-flex justify-content-center align-items-center">
-    <form id="authForm">
-        <div class="home container d-flex justify-content-center align-items-center">
-            <div class="row">
-                <div class="head text-center">
-                    <h1><i class="fa-regular fa-comments"></i> UsChatting</h1>
-                </div>
-
-                <div class="form container">
-                    <div class="user text-start mt-4">
-                        <label class="fs-4" for="username">Nom d'utilisateur</label><br>
-                        <input type="text" id="username" placeholder="Entrez votre nom..." class="form-control" required autofocus>
-                        <label class="fs-4 mt-3" for="password">Mot de passe</label><br>
-                        <input type="password" id="password" placeholder="Entrez votre mot de passe..." class="form-control" required>
-                    </div>
-
-                    <div class="room text-start mt-3">
-                        <label class="fs-4" for="room">Room</label><br>
-                        <select name="room" id="room" class="w-100 form-control" required>
-                            <option value="Mathematique">Mathematique</option>
-                            <option value="Informatique">Informatique</option>
-                            <option value="Physique">Physique</option>
-                            <option value="Chimie">Chimie</option>
-                        </select>
-                    </div>
-
-                    <div class="join-btn mt-3 mb-3 justify-content-center d-flex gap-5">
-                        <button type="button" class="btn btn-outline-primary" id="signInBtn">Sign in</button>
-                        <button type="button" class="btn btn-outline-success" id="signUpBtn">Sign up</button>
-                    </div>
-                </div>
-            </div>
+    <div class="home">
+        <div class="head text-center">
+            <!-- <h1><i class="fa-regular fa-comments"></i> UsChatting</h1> -->
         </div>
-    </form>
+        <input type="checkbox" id="chk" aria-hidden="true">
+        
+
+        <div class="login-form">
+            <form>
+                <div class="user text-start mt-4">
+                    <label for="chk" aria-hidden="true" class="mb-3">Login</label>
+                    <label class="fs-4 mb-1" for="loginUsername">Nom d'utilisateur</label>
+                    <input type="text" id="loginUsername" placeholder="Entrez votre nom..." class="form-control" required autofocus><br>
+                    <label class="fs-4 mt-1" for="loginPassword">Mot de passe</label>
+                    <input type="password" id="loginPassword" placeholder="Entrez votre mot de passe..." class="form-control" required><br>
+                </div>
+
+                <div class="room text-start">
+                    <label class="fs-4" for="room">Room</label>
+                    <select name="room" id="room" class="w-100 form-control" required>
+                        <option value="Mathematique">Mathematique</option>
+                        <option value="Informatique">Informatique</option>
+                        <option value="Physique">Physique</option>
+                        <option value="Chimie">Chimie</option>
+                    </select>
+                </div>
+
+                <div class="join-btn justify-content-center d-flex mb-5">
+                    <button type="button" class="btn btn-outline-success" id="loginBtn">Login</button>
+                </div>
+            </form>
+        </div>
+
+
+
+        <!-- Formulaire Sign Up -->
+        <div class="signup-form">
+            <form>
+                <div class="user text-start mt-4">
+                    <label for="chk" aria-hidden="true" class="mb-4">Sign up</label>
+                    <label class="fs-4" for="signupUsername">Nom d'utilisateur</label>
+                    <input type="text" class="mt-3" id="signupUsername" placeholder="Entrez votre nom..." class="form-control" required autofocus><br>
+                    <label class="fs-4 mt-3" for="signupPassword">Mot de passe</label>
+                    <input type="password" class="mt-3" id="signupPassword" placeholder="Entrez votre mot de passe..." class="form-control" required>
+                </div>
+
+                <div class="join-btn mt-3 mb-3 justify-content-center d-flex gap-5">
+                    <button type="button" class="btn btn-outline-success" id="signUpBtn">Sign up</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Formulaire Login -->
+        
+    </div>
 
     <script src="/Boostarp/js/bootstrap.bundle.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="script.js"></script> <!-- Fichier JavaScript externe -->
+    <script src="login.js"></script>
+
+    <!-- Conteneur des notifications -->
+<div id="notification-container" class="notification-container">
+    <!-- Les notifications seront ajoutées ici dynamiquement -->
+</div>
 </body>
 </html>
